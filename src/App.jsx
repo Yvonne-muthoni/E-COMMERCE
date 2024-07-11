@@ -1,12 +1,17 @@
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
+  <>
       <Navbar />
-      </div>
+      <BrowserRouter>
+      <Routes>
+      </Routes>
+    </BrowserRouter>
+      </>
    
-  )
+  );
 }
 
-export default App
+export default App;
