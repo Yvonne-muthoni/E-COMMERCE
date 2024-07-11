@@ -1,60 +1,57 @@
-import React, { useState, useEffect } from 'eact';
-import axios from 'axios';
-import { Switch, Route } from 'eact-router-dom';
+import React, { useState } from 'react';
 
 const Profile = () => {
-  const [user, setUser] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [user, setUser] = useState({
+    username: 'John Doe',
+    profile_picture: 'https://example.com/profile-picture.jpg',
+    first_name: 'John',
+    last_name: 'Doe',
+    email: 'johndoe@example.com',
+  });
 
-  useEffect(() => {
-    axios.get('/api/user/profile')
-     .then(response => {
-        const userData = response.data;
-        if (!userData) {
-          setErrorMessage('No user data found');
-          return;
-        }
-        setUser(userData);
-        setLoading(false);
-      })
-     .catch(error => {
-        setErrorMessage('Error fetching user data');
-        console.error(error);
-      });
-  }, []);
-
-  if (loading) {
-    return <div className="loading">Loading...</div>;
-  }
-
-  if (errorMessage) {
-    return <div className="error">{errorMessage}</div>;
-  }
+  const [orders, setOrders] = useState([
+    { id: 1, date: '2022-01-01', number: 'ORD-001', total: 100.00, status: 'Delivered' },
+    { id: 2, date: '2022-01-15', number: 'ORD-002', total: 50.00, status: 'Pending' },
+    { id: 3, date: '2022-02-01', number: 'ORD-003', total: 200.00, status: 'Shipped' },
+  ]);
 
   return (
-    <Switch>
-      <Route path="/profile">
-        <div className="profile-container">
-          <h1>My Profile</h1>
-          <div className="profile-info">
-            <h2>Personal Information</h2>
-            <ul>
-              <li>
-                <strong>Name:</strong> {user.name}
-              </li>
-              <li>
-                <strong>Email:</strong> {user.email}
-              </li>
-              <li>
-                <strong>Phone Number:</strong> {user.phoneNumber}
-              </li>
-            </ul>
-          </div>
-          {/*... */}
-        </div>
-      </Route>
-    </Switch>
+    <div className="profile-container">
+      <header>
+        <img src={user.profile_picture} alt={user.username} />
+        <h1>{user.username}</h1>
+      </header>
+      <section id="profile-info">
+        <h2>Profile Information</h2>
+        <ul>
+          <li>
+            <span>First Name:</span>
+            <span>{user.first_name}</span>
+          </li>
+          <li>
+            <span>Last Name:</span>
+            <span>{user.last_name}</span>
+          </li>
+          <li>
+            <span>Email:</span>
+            <span>{user.email}</span>
+          </li>
+        </ul>
+      </section>
+      <section id="order-history">
+        <h2>Order History</h2>
+        <ul>
+          {orders.map((order) => (
+            <li key={order.id}>
+              <span>{order.date}</span>
+              <span>{order.number}</span>
+              <span>{order.total}</span>
+              <span>{order.status}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
   );
 };
 
