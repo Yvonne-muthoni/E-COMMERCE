@@ -1,29 +1,39 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faShoppingCart, faBoxOpen, faClipboardList, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import '@fontsource/roboto'; 
 
-function Navbar() {
+const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link to="/" className="navbar-brand">App Name</Link>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
-            <Link to="/" className="nav-link">Home <span className="sr-only">(current)</span></Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/login" className="nav-link">Login</Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/profile" className="nav-link">Profile</Link>
-          </li>
-        </ul>
+    <nav className="bg-blue-500 p-4 flex items-center justify-between">
+      <div className="text-white font-bold text-xl" style={{ fontFamily: 'Roboto, sans-serif' }}>
+        <FontAwesomeIcon icon={faBoxOpen} className="mr-2" />
+        E-Com
+      </div>
+      <div className="flex items-center space-x-6"> {/* Adjusted spacing */}
+        <a href="/" className="text-white hover:text-gray-300 flex items-center">
+          <FontAwesomeIcon icon={faHome} className="mr-1" />
+          Home
+        </a>
+        <a href="/products" className="text-white hover:text-gray-300 flex items-center">
+          <FontAwesomeIcon icon={faBoxOpen} className="mr-1" />
+          Products
+        </a>
+        <a href="/orders" className="text-white hover:text-gray-300 flex items-center">
+          <FontAwesomeIcon icon={faClipboardList} className="mr-1" />
+          Orders
+        </a>
+        <a href="/cart" className="text-white hover:text-gray-300 flex items-center">
+          <FontAwesomeIcon icon={faShoppingCart} className="mr-1" />
+          Cart
+        </a>
+        <a href="/login" className="text-white hover:text-gray-300 flex items-center">
+          <FontAwesomeIcon icon={faSignInAlt} className="mr-1" />
+          LogIn
+        </a>
       </div>
     </nav>
   );
-}
+};
 
-export default Navbar;
+export default NavBar;
