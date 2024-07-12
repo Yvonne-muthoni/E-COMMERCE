@@ -2,6 +2,8 @@ import Products from './components/Products'
 import Orders from './components/Orders'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
@@ -37,8 +39,10 @@ function App() {
 
 export default App;
 
+
 import { BrowserRouter, Route} from 'react-router-dom';
 import Navbar from './components/Navbar';
+
 
 
 function App() {
