@@ -13,7 +13,7 @@ const ForgotPassword= () => {
     const token = 'dummyToken'; // Replace this with the actual token from your backend response
     navigate(`/reset-password/${token}`);
   };
-
+ 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-8">
