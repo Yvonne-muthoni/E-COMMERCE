@@ -9,10 +9,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <Route
-              path="/profile"
-              element={<Protector Component={<Profile token={jwt} />} />}
-            />
+      <Route path="/profile" component={Profile} />
     </BrowserRouter>
   );
 }
