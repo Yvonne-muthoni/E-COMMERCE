@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const LoginPage = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-8">
-        <h2 className="text-3xl font-bold text-center mb-8">Welcome Back !!</h2>
+      <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-8">  
+        <h2 className="text-3xl font-bold text-center mb-8">Welcome Back !</h2>
         <form className="space-y-6">
           <div>
             <label className="block text-gray-700">Email Address</label>
