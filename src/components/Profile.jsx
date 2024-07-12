@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 const Profile = () => {
   const [user, setUser] = useState({
-    username: 'John Doe',
-    profile_picture: 'https://example.com/profile-picture.jpg',
-    first_name: 'John',
-    last_name: 'Doe',
-    email: 'johndoe@example.com',
+    username: '  ',
+    profile_picture: 'https://www.w3schools.com/w3images/avatar2.png',
+    first_name: '  ',
+    last_name: '  ',
+    email: '   ',
   });
 
   const [orders, setOrders] = useState([

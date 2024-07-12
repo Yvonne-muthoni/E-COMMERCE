@@ -1,6 +1,7 @@
 import Profile from './components/Profile'
 import { BrowserRouter, Route} from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Profile from "./components/Profile";
 
 
 
@@ -8,7 +9,10 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <Profile    />
+      <Route
+              path="/profile"
+              element={<Protector Component={<Profile token={jwt} />} />}
+            />
     </BrowserRouter>
   );
 }
