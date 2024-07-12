@@ -1,34 +1,7 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { IoPersonCircleOutline } from 'react-icons/io5';
-
-const UpoloadAvatar = ({ token, userId, username, avatarUrl, setisUserUpdated }) => {
-  const handleAvatarUpload = async (event) => {
-    const file = event.target.files[0];
-    const formData = new FormData();
-    formData.append('avatar', file);
-
-    try {
-      const response = await axios.post(`http://localhost:1337/api/users/${userId}/avatar`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      setisUserUpdated(true);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  return (
-    <div className="avatar-upload">
-      <input type="file" onChange={handleAvatarUpload} />
-      <button>Upload Avatar</button>
-    </div>
-  );
-};
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { IoPersonCircleOutline } from "react-icons/io5";
+import UpoloadAvatar from "./UploadAvatar";
 
 const Profile = ({ token }) => {
   const [user, setUser] = useState({});
@@ -39,13 +12,13 @@ const Profile = ({ token }) => {
       try {
         const { data } = await axios.get(`http://localhost:1337/api/users/me`, {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `bearer ${token}`,
           },
         });
         setUser(data);
         setisUserUpdated(false);
       } catch (error) {
-        console.error(error);
+        console.log({ error });
       }
     };
     getProfileData();
@@ -56,7 +29,10 @@ const Profile = ({ token }) => {
       <div className="avatar">
         <div className="avatar-wrapper">
           {user.avatarUrl ? (
-            <img src={`http://localhost:1337${user.avatarUrl}`} alt={`${user.username} avatar`} />
+            <img
+              src={`http://localhost:1337${user.avatarUrl}`}
+              alt={`${user.username} avatar`}
+            />
           ) : (
             <IoPersonCircleOutline />
           )}
