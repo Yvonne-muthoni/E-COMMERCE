@@ -27,6 +27,10 @@ const NavBar = () => {
           <FontAwesomeIcon icon={faShoppingCart} className="mr-1" />
           Cart
         </a>
+        <a href="/profile" className="text-white hover:text-gray-300 flex items-center">
+          <FontAwesomeIcon icon={faSignInAlt} className="mr-1" />
+          Profile
+        </a>
         <a href="/login" className="text-white hover:text-gray-300 flex items-center">
           <FontAwesomeIcon icon={faSignInAlt} className="mr-1" />
           LogIn
