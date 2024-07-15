@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faShoppingCart, faBoxOpen, faClipboardList, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-import '@fontsource/roboto'; 
+import { faHome, faShoppingCart, faBoxOpen, faClipboardList, faSignInAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+import '@fontsource/roboto';
 
 const NavBar = () => {
   return (
@@ -28,7 +28,7 @@ const NavBar = () => {
           Cart
         </a>
         <a href="/profile" className="text-white hover:text-gray-300 flex items-center">
-          <FontAwesomeIcon icon={faSignInAlt} className="mr-1" />
+          <FontAwesomeIcon icon={faUser} className="mr-1" />
           Profile
         </a>
         <a href="/login" className="text-white hover:text-gray-300 flex items-center">
