@@ -1,3 +1,4 @@
+
 import Products from './components/Products'
 import Orders from './components/Orders'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -40,8 +41,10 @@ function App() {
 export default App;
 
 
+
 import { BrowserRouter, Route} from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Profile from "./components/Profile";
 
 
 
@@ -49,6 +52,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
+      <Profile />
     </BrowserRouter>
   );
 

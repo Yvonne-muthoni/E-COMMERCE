@@ -1,60 +1,58 @@
-import React, { useState, useEffect } from 'eact';
-import axios from 'axios';
-import { Switch, Route } from 'eact-router-dom';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { IoPersonCircleOutline } from "react-icons/io5";
+import UpoloadAvatar from "./UploadAvatar";
 
-const Profile = () => {
+const Profile = ({ token }) => {
   const [user, setUser] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [isUserUpdated, setisUserUpdated] = useState(false);
 
   useEffect(() => {
-    axios.get('/api/user/profile')
-     .then(response => {
-        const userData = response.data;
-        if (!userData) {
-          setErrorMessage('No user data found');
-          return;
-        }
-        setUser(userData);
-        setLoading(false);
-      })
-     .catch(error => {
-        setErrorMessage('Error fetching user data');
-        console.error(error);
-      });
-  }, []);
-
-  if (loading) {
-    return <div className="loading">Loading...</div>;
-  }
-
-  if (errorMessage) {
-    return <div className="error">{errorMessage}</div>;
-  }
+    const getProfileData = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:1337/api/users/me`, {
+          headers: {
+            Authorization: `bearer ${token}`,
+          },
+        });
+        setUser(data);
+        setisUserUpdated(false);
+      } catch (error) {
+        console.log({ error });
+      }
+    };
+    getProfileData();
+  }, [token, isUserUpdated]);
 
   return (
-    <Switch>
-      <Route path="/profile">
-        <div className="profile-container">
-          <h1>My Profile</h1>
-          <div className="profile-info">
-            <h2>Personal Information</h2>
-            <ul>
-              <li>
-                <strong>Name:</strong> {user.name}
-              </li>
-              <li>
-                <strong>Email:</strong> {user.email}
-              </li>
-              <li>
-                <strong>Phone Number:</strong> {user.phoneNumber}
-              </li>
-            </ul>
-          </div>
-          {/*... */}
+    <div className="profile">
+      <div className="avatar">
+        <div className="avatar-wrapper">
+          {user.avatarUrl ? (
+            <img
+              src={`http://localhost:1337${user.avatarUrl}`}
+              alt={`${user.username} avatar`}
+            />
+          ) : (
+            <IoPersonCircleOutline />
+          )}
+          <UpoloadAvatar
+            token={token}
+            userId={user.id}
+            username={user.username}
+            avatarUrl={user.avatarUrl}
+            setisUserUpdated={setisUserUpdated}
+          />
         </div>
-      </Route>
-    </Switch>
+      </div>
+      <div className="body">
+        <p>Name: {user.username}</p>
+        <p>Email: {user.email}</p>
+        <p>
+          Account created at: {new Date(user.createdAt).toLocaleDateString()}
+        </p>
+      </div>
+    </div>
   );
 };
 
